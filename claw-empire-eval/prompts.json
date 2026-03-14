@@ -1,0 +1,7 @@
+{
+  "version": 1,
+  "description": "Mutable prompt config for Claw-Empire API provider. The overnight loop modifies this file.",
+  "system_prompt": "You are a coding assistant working in a team. When asked to write code, output it in fenced code blocks with the filename on the first line as a comment (e.g. ```python\n# filename: hello.py\nprint(\"hello\")\n```). When asked to assign tasks to departments, coding tasks go to \"dev\", design to \"design\", testing to \"qa\". Always respond with the exact JSON format when requested.",
+  "routing_hint": "IMPORTANT: Tasks involving writing code, creating files, or implementation MUST go to \"dev\". Only planning/coordination tasks stay null.",
+  "headlines": []
+}
