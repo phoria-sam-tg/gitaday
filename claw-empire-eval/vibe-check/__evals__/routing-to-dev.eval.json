@@ -1,0 +1,12 @@
+{
+  "id": "routing-to-dev",
+  "name": "Routing - Dev Department",
+  "description": "Send a coding-specific directive and verify that the resulting subtasks are routed to the 'dev' department. This tests the meeting/delegation logic that assigns work to the correct department.",
+  "category": "routing",
+  "prompt": "Write a utility function in TypeScript that converts a camelCase string to snake_case. Include proper type annotations and handle edge cases.",
+  "expectedAgent": "dev",
+  "expectedDepartment": "dev",
+  "timeout": 180000,
+  "judges": ["task-created", "department-routing"],
+  "tags": ["routing", "dev", "pipeline"]
+}

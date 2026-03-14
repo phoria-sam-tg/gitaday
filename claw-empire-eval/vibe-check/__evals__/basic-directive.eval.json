@@ -1,0 +1,11 @@
+{
+  "id": "basic-directive",
+  "name": "Basic Directive - Task Creation",
+  "description": "Send a simple greeting directive to Claw-Empire and verify that at least one task gets created in the system. This tests the most fundamental part of the pipeline: directive ingestion.",
+  "category": "basic",
+  "prompt": "Hello team! Please acknowledge this message and confirm the system is operational.",
+  "expectedBehavior": "The directive should be accepted, a meeting should occur, and at least one task should be created from it.",
+  "timeout": 180000,
+  "judges": ["task-created"],
+  "tags": ["smoke", "pipeline", "basic"]
+}

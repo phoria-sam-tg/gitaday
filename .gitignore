@@ -1,0 +1,41 @@
+# Cloned experiment repos (tracked via repos.json manifest)
+/AIvilization/
+/BitNet/
+/GenCAD/
+/Mobile-GS/
+/Shadowbroker/
+/SillyTavern/
+/ai-civilization/
+/autoresearch/
+/claw-empire/
+/holi-spatial/
+/opencode/
+/skills/
+/superpowers/
+/vibe-check/
+
+# Agent sandbox
+claw-sandbox/
+
+# Node/Python/Build
+node_modules/
+__pycache__/
+*.pyc
+.venv/
+dist/
+build/
+.next/
+
+# Runtime
+*.sqlite
+*.log
+logs/
+.env
+.env.local
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Temp
+.tmp/

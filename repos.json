@@ -1,0 +1,103 @@
+{
+  "description": "Cloned experiment repos — not tracked in git, clone locally to reproduce",
+  "repos": [
+    {
+      "dir": "Shadowbroker",
+      "url": "https://github.com/BigBodyCobain/Shadowbroker.git",
+      "category": "osint",
+      "status": "assessed",
+      "notes": "OSINT dashboard, deployed to exp.samtg.xyz/osint"
+    },
+    {
+      "dir": "holi-spatial",
+      "url": "https://github.com/Visionary-Laboratory/holi-spatial.git",
+      "category": "spatial",
+      "status": "assessed",
+      "notes": "Spatial computing — needs remote GPU"
+    },
+    {
+      "dir": "GenCAD",
+      "url": "https://github.com/ferdous-alam/GenCAD.git",
+      "category": "3d",
+      "status": "assessed",
+      "notes": "Generative CAD — needs GPU"
+    },
+    {
+      "dir": "Mobile-GS",
+      "url": "https://github.com/xiaobiaodu/Mobile-GS.git",
+      "category": "3d",
+      "status": "assessed",
+      "notes": "Mobile Gaussian Splatting — needs GPU"
+    },
+    {
+      "dir": "BitNet",
+      "url": "https://github.com/microsoft/BitNet.git",
+      "category": "llm",
+      "status": "running",
+      "notes": "1-bit LLM inference, running on :8081 as OpenAI-compatible API"
+    },
+    {
+      "dir": "SillyTavern",
+      "url": "https://github.com/SillyTavern/SillyTavern.git",
+      "category": "chat",
+      "status": "running",
+      "notes": "Character/persona chat, running on :3005, tavern.samtg.xyz"
+    },
+    {
+      "dir": "claw-empire",
+      "url": "https://github.com/GreenSheep01201/claw-empire.git",
+      "category": "agents",
+      "status": "running+patched",
+      "notes": "AI office sim, 14 agents on Ollama, patched for 7B model support, claw.samtg.xyz"
+    },
+    {
+      "dir": "AIvilization",
+      "url": "https://github.com/corca-ai/AIvilization.git",
+      "category": "agents",
+      "status": "cloned",
+      "notes": "AI civilization sim — needs OpenAI key"
+    },
+    {
+      "dir": "ai-civilization",
+      "url": "https://github.com/kyegomez/ai-civilization.git",
+      "category": "agents",
+      "status": "cloned",
+      "notes": "AI Town fork — needs OpenAI + Pinecone + Convex + Clerk"
+    },
+    {
+      "dir": "autoresearch",
+      "url": "https://github.com/karpathy/autoresearch.git",
+      "category": "research",
+      "status": "assessed",
+      "notes": "Karpathy's autonomous ML experiment loop — needs CUDA, studied for patterns"
+    },
+    {
+      "dir": "opencode",
+      "url": "https://github.com/anomalyco/opencode.git",
+      "category": "agents",
+      "status": "installed",
+      "notes": "Open-source CLI coding agent, Ollama-compatible, installed at ~/.opencode/"
+    },
+    {
+      "dir": "skills",
+      "url": "https://github.com/anthropics/skills.git",
+      "category": "tooling",
+      "status": "assessed",
+      "notes": "17 official Anthropic Claude Code skills"
+    },
+    {
+      "dir": "superpowers",
+      "url": "https://github.com/obra/superpowers.git",
+      "category": "tooling",
+      "status": "assessed",
+      "notes": "14 battle-tested dev skills (TDD, debugging, verification)"
+    },
+    {
+      "dir": "vibe-check",
+      "url": "https://github.com/poofdotnew/vibe-check.git",
+      "category": "tooling",
+      "status": "configured",
+      "notes": "AI agent eval framework, harness built for Claw-Empire testing"
+    }
+  ]
+}

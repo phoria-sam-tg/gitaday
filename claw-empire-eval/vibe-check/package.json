@@ -1,0 +1,16 @@
+{
+  "name": "claw-empire-eval",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "vibe-check": "vibe-check",
+    "eval": "vibe-check run",
+    "eval:verbose": "vibe-check run -v",
+    "eval:basic": "vibe-check run --id basic-directive",
+    "eval:codegen": "vibe-check run --id code-gen-hello",
+    "eval:routing": "vibe-check run --id routing-to-dev"
+  },
+  "dependencies": {
+    "@poofnew/vibe-check": "file:../../vibe-check"
+  }
+}

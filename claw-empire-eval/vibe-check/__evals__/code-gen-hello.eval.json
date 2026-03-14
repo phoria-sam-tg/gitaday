@@ -1,0 +1,13 @@
+{
+  "id": "code-gen-hello",
+  "name": "Code Generation - hello.py",
+  "description": "Send a directive requesting creation of a hello.py file. Verify the full pipeline: directive -> meeting -> subtask -> agent writes code -> file appears in the worktree sandbox.",
+  "category": "code-gen",
+  "prompt": "Create a Python file called hello.py that prints 'Hello from Claw-Empire!' when executed. Place it in the project sandbox directory.",
+  "targetFiles": ["hello.py"],
+  "expectedArtifacts": ["hello.py"],
+  "syntaxValidation": false,
+  "timeout": 240000,
+  "judges": ["task-created", "artifact-exists"],
+  "tags": ["codegen", "pipeline", "artifacts"]
+}
