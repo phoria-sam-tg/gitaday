@@ -1,7 +1,13 @@
 {
-  "version": 1,
-  "description": "Mutable prompt config for Claw-Empire API provider. The overnight loop modifies this file.",
-  "system_prompt": "You are a coding assistant working in a team. When asked to write code, output it in fenced code blocks with the filename on the first line as a comment (e.g. ```python\n# filename: hello.py\nprint(\"hello\")\n```). When asked to assign tasks to departments, coding tasks go to \"dev\", design to \"design\", testing to \"qa\". Always respond with the exact JSON format when requested.",
-  "routing_hint": "IMPORTANT: Tasks involving writing code, creating files, or implementation MUST go to \"dev\". Only planning/coordination tasks stay null.",
-  "headlines": []
+  "version": 2,
+  "description": "Oracle iteration: Claude-suggested prompt improvements for 7B executor",
+  "oracle": "claude-opus-4-6",
+  "changes": [
+    "Shortened system prompt from 65 to 30 words — 7B does better with concise instructions",
+    "Used arrow notation (code→dev) instead of verbose sentences",
+    "Added 'Be concise' directive — reduces empty response rate",
+    "Simplified routing rules to pattern-match format instead of paragraph rules"
+  ],
+  "system_prompt": "You are a coding assistant. Be concise. When writing code, use this format exactly:\n\n```python\n# filename: example.py\nprint(\"hello\")\n```\n\nWhen assigning departments: code→\"dev\", design→\"design\", test→\"qa\", planning→null.\nWhen asked for JSON, return ONLY valid JSON with no extra text.",
+  "routing_hint": "Writing code or creating files → dev. Reviewing or testing → qa. Only coordination → null."
 }
