@@ -119,18 +119,57 @@ Custom judges: task-created, artifact-exists, department-routing, task-status
 ## What's Next
 
 ### Immediate
-- [ ] Clone autoresearch-mlx fork, run on M1 Max with TinyStories
+- [x] Run overnight hill-climbing loop (2 runs, peak 2/3 pass)
+- [ ] Run the loop with Claude as improvement oracle (7B executes, Claude suggests)
 - [ ] Set up OpenCode as Claw-Empire CLI provider (switch agents from api to opencode)
 - [ ] Add verification gate to Claw-Empire (check worktree diff before marking done)
-- [ ] Run vibe-check learning system to auto-propose prompt improvements
 
 ### Medium-term
 - [ ] Build the port registry (samcloud Issue #6)
 - [ ] Create /add-service skill for safe Caddy + DNS enrollment
-- [ ] Try larger local models (qwen2.5:32b if RAM allows, or offload to ada-1)
-- [ ] Vision/image gen model for full agent stack
+- [ ] Try 5090 gateway with fixed streaming (32B for both execution and improvement)
+- [ ] Explore Hermes Agent persistent memory patterns
 
 ### The Big Idea
 Compose the hill-climbing git loop (autoresearch) with the multi-agent office (Claw-Empire)
 and the test harness (vibe-check): agents propose changes, vibe-check evaluates, git keeps
 or reverts, loop overnight. The arena runs itself.
+
+## Overnight Results (2026-03-16)
+
+**We ran the loop. Here's what we learned.**
+
+The Karpathy pattern works mechanically — hill-climbing + git keep/revert is solid. Over 12
+iterations, the system correctly kept improvements and reverted regressions. Peak: 2/3 tests
+passing (hello.py + math_utils.py created with correct content by the 14-agent office sim).
+
+But the self-improvement loop failed: **7B can't improve its own prompts.** Every suggestion
+from qwen2.5:7b made things worse. The model can write code (executor role) but can't reason
+about prompt engineering (oracle role).
+
+### The Two-Model Architecture
+
+This reveals the right architecture for local agent stacks:
+
+```
+┌─────────────────────┐     ┌──────────────────────┐
+│   Oracle Model      │     │   Executor Model     │
+│   (Claude / 32B+)   │     │   (7B / local)       │
+│                     │     │                      │
+│   • Prompt design   │────▶│   • Code generation  │
+│   • Strategy        │     │   • Task execution   │
+│   • Improvement     │     │   • Meeting responses │
+│     suggestions     │     │   • JSON formatting  │
+└─────────────────────┘     └──────────────────────┘
+         ▲                           │
+         │         ┌─────────┐       │
+         └─────────│  Eval   │◀──────┘
+                   │ Harness │
+                   └─────────┘
+```
+
+The oracle doesn't need to run continuously — it reviews results and suggests changes
+between iterations. The executor runs the actual workload. This maps perfectly to:
+- **Overnight:** Claude reviews morning results, suggests 1-2 changes, 7B executes all day
+- **Realtime:** 32B on 5090 as oracle (when gateway streaming is fixed), 7B as executor
+- **Hybrid:** Claude for strategy, local models for execution, vibe-check as the judge

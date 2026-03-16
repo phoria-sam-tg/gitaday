@@ -290,9 +290,114 @@ Run 3 produced `hello.py` with correct content — 14-agent office sim running e
 
 ---
 
-## To Explore (Backlog)
+## Project 8: OpenCode
+**Repo:** https://github.com/anomalyco/opencode
+**Cloned:** 2026-03-14
+**Category:** CLI Coding Agent
+**Verdict:** INSTALLED — viable Claw-Empire CLI provider, 7B tool calling unreliable
 
-- **OpenCode** (https://github.com/opencode-ai/opencode) — Open-source CLI coding agent, similar to Claude Code. Claw-Empire already supports it as a `cli_provider`. Could replace Claude Code as the orchestration layer for agent task execution with local models.
-- **Vision/image gen model** — Local equivalent to complete the agent stack (text + vision + gen). Deferred.
+### What It Is
+Open-source CLI coding agent (122k stars), similar to Claude Code. Provider-agnostic, ships as single binary via npm. Already wired into Claw-Empire as `cli_provider: "opencode"`.
+
+### Local LLM Support
+- Ollama: YES — configured via `opencode.json`, qwen2.5:7b responds to chat
+- BitNet 2B: Detected but too small for agentic work
+- Tool calling with 7B: Unreliable (malformed arguments, same pattern as Claw-Empire routing)
+
+### Key Insight
+The 7B wall is consistent across all agent frameworks — chat works, structured tool calling breaks. Need 32B+ for reliable tool use.
+
+---
+
+## Project 9: Autoresearch (Karpathy)
+**Repo:** https://github.com/karpathy/autoresearch
+**Cloned:** 2026-03-14
+**Category:** Autonomous ML Experimentation
+**Verdict:** ASSESSED — patterns stolen for our overnight loop
+
+### What It Is
+NOT a research search agent. An autonomous ML experimentation system: give a coding agent a GPU + `train.py`, it modifies code, trains 5 min, checks if loss improved, keeps or reverts, loops overnight. ~31.8k stars.
+
+### Architecture
+Three files: `prepare.py` (immutable harness), `train.py` (mutable), `program.md` (agent instructions). The agent is external (Claude Code, Codex, etc.) — the repo contains zero agent/LLM code.
+
+### Patterns We Stole
+1. Hill-climbing git loop (commit → run → measure → keep/revert)
+2. Fixed budget per iteration (5 min)
+3. Single-file scope (agent can ONLY modify one file)
+4. program.md as the new source code
+5. results.tsv as structured memory
+6. NEVER STOP directive (loop until interrupted)
+7. Simplicity criterion (simpler wins ties)
+
+### Local Feasibility
+Training code needs CUDA. macOS forks exist (autoresearch-mlx, autoresearch-macos). The patterns are the real value — we applied them to Claw-Empire eval.
+
+---
+
+## Project 10: Skills & Tooling
+**Repos:** anthropics/skills, obra/superpowers, poofdotnew/vibe-check
+**Cloned:** 2026-03-14
+**Category:** Agent Evaluation & Development Skills
+
+### anthropics/skills (17 official skills)
+Templates for Claude Code: pdf, docx, skill-creator, webapp-testing, etc. Good reference for skill structure.
+
+### obra/superpowers (14 dev skills)
+Battle-tested: TDD, systematic-debugging, verification-before-completion, writing-plans, code-review, git-worktrees. The methodology patterns more valuable than the code.
+
+### poofdotnew/vibe-check (eval framework)
+Full test harness for AI agents. We built a Claw-Empire wrapper with 3 eval cases + 4 custom judges:
+- `basic-directive` — task creation smoke test (PASS)
+- `routing-to-dev` — department routing verification (PASS)
+- `code-gen-hello` — artifact creation (TIMING-SENSITIVE)
+
+Built-in learning system that proposes prompt improvements from failures (uses LLM judge).
+
+---
+
+## Project 11: Hermes Agent (NousResearch)
+**Repo:** https://github.com/NousResearch/hermes-agent
+**Cloned:** 2026-03-15
+**Category:** Persistent Autonomous Agent
+**Verdict:** CLONED — interesting persistent memory + skill generation patterns
+
+### What It Is
+Persistent server-side agent with multi-platform I/O (Telegram, Discord, Slack, CLI). Python, model-agnostic. Grows over time via memory accumulation and skill generation.
+
+### Why It's Interesting
+Persistent memory + autonomous skill generation patterns overlap with what we're building. The agent lives on a server and develops capabilities over time rather than starting fresh each session.
+
+---
+
+## Overnight Hill-Climbing Loop
+
+### Setup
+Applied Karpathy's autoresearch pattern to Claw-Empire prompt optimization:
+- **Mutable file:** `prompts.json` (system prompt + routing hint)
+- **Immutable harness:** 3 eval tests (hello.py, README.md, math_utils.py)
+- **Metric:** pass rate (0-3)
+- **Agent:** Ollama qwen2.5:7b (local)
+- **Budget:** ~15 min per iteration cycle
+
+### Run 1 Results (2026-03-14, crashed after 1 iteration)
+- 1/3 pass (hello.py passed, README partial, math_utils failed)
+- System crash due to resource contention (too many services running)
+- Python syntax error in overnight script (bash/python string escaping)
+
+### Run 2 Results (2026-03-16, 12 iterations over ~2 hours)
+| Iter | Pass Rate | Status | Notes |
+|------|-----------|--------|-------|
+| 1 | 0/3 | same | Cold start |
+| **2** | **2/3** | **keep** | Peak — hello.py + math_utils.py passed |
+| 3 | 1/3 | revert | Ollama's prompt change regressed |
+| 4-11 | 0/3 | revert | Stuck — model can't find improvements |
+
+### Key Findings
+1. **The arena works.** Hill-climbing + git keep/revert is solid. Correctly reverts regressions.
+2. **Peak 2/3 on base config.** The original prompts (with our manual patches) are already near-optimal for 7B.
+3. **7B can't self-improve.** Every prompt suggestion from qwen2.5:7b made things worse. The model can execute (write code) but can't reason about its own prompts.
+4. **The right architecture:** Use a stronger model (Claude/32B) as the improvement oracle, keep 7B as the executor. Different models for different roles.
+5. **README "partial" is the stubborn test.** File exists but content never matches — the model updates it but doesn't include the exact "About" section text.
 
 ---
