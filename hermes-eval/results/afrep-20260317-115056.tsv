@@ -1,0 +1,15 @@
+test_id	dimension	name	status	duration_s	details
+T01	chat	Simple greeting	pass	29	pattern matched: hello\|Hello\|Hi\|hey
+T02	chat	Factual question	pass	21	pattern matched: Monty\|comedy\|monty
+T03	file-ops	Read file	fail	44	error in output
+T04	file-ops	Write file	partial	183	pattern matched: creat\|writ\|greeting; file NOT found: greeting.txt
+T05	file-ops	Parse JSON	fail	51	error in output
+T06	terminal	Run command	pass	84	pattern matched: Linux\|Darwin\|linux
+T07	terminal	Pip install	pass	70	pattern matched: moo\|cow\|___
+T08	coding	Generate script	fail	109	error in output
+T09	coding	Fix a bug	partial	65	response present (1872 chars) but pattern not matched; file NOT found: buggy.py
+T10	research	Web search	pass	72	pattern matched: 3\.\|python\|Python
+T11	multi-step	Chain of operations	partial	72	response present (2272 chars) but pattern not matched; file NOT found: chain-test/combined.txt
+T12	multi-step	Analyze and summarize	fail	54	error in output
+T13	self-aware	Know your tools	partial	50	response present (985 chars) but pattern not matched
+T14	self-aware	Know your limits	pass	25	pattern matched: tool\|web_search\|web_extract\|cannot\|need
