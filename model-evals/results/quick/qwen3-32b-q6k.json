@@ -1,0 +1,168 @@
+{
+  "model": "qwen3-32b-q6k",
+  "timestamp": "2026-03-29T23:21:17",
+  "summary": {
+    "passed": 2,
+    "total": 10,
+    "avg_score": 30.0
+  },
+  "categories": {
+    "simple": {
+      "pass": 0,
+      "total": 5,
+      "score": 0
+    },
+    "parallel": {
+      "pass": 0,
+      "total": 1,
+      "score": 50
+    },
+    "multi": {
+      "pass": 0,
+      "total": 1,
+      "score": 50
+    },
+    "relevance": {
+      "pass": 2,
+      "total": 2,
+      "score": 200
+    },
+    "format": {
+      "pass": 0,
+      "total": 1,
+      "score": 0
+    }
+  },
+  "results": [
+    {
+      "id": "simple_single",
+      "name": "Simple single tool call",
+      "category": "simple",
+      "pass": false,
+      "score": 0,
+      "reasons": [
+        "Expected ['get_service_status'] but no tools called"
+      ],
+      "called_tools": [],
+      "called_args": {},
+      "duration": 61.88
+    },
+    {
+      "id": "correct_selection",
+      "name": "Select correct tool from 5 options",
+      "category": "simple",
+      "pass": false,
+      "score": 0,
+      "reasons": [
+        "Expected ['list_services'] but no tools called"
+      ],
+      "called_tools": [],
+      "called_args": {},
+      "duration": 85.26
+    },
+    {
+      "id": "multi_param",
+      "name": "Multiple required + optional params",
+      "category": "simple",
+      "pass": false,
+      "score": 0,
+      "reasons": [
+        "Expected ['register_service'] but no tools called"
+      ],
+      "called_tools": [],
+      "called_args": {},
+      "duration": 73.97
+    },
+    {
+      "id": "enum_constraint",
+      "name": "Respect enum constraints",
+      "category": "simple",
+      "pass": false,
+      "score": 0,
+      "reasons": [
+        "Expected ['create_dns_record'] but no tools called"
+      ],
+      "called_tools": [],
+      "called_args": {},
+      "duration": 49.91
+    },
+    {
+      "id": "parallel_calls",
+      "name": "Parallel tool calls",
+      "category": "parallel",
+      "pass": false,
+      "score": 50,
+      "reasons": [
+        "Expected ['get_service_status', 'get_service_status'] but no tools called"
+      ],
+      "called_tools": [],
+      "called_args": {},
+      "duration": 110.28
+    },
+    {
+      "id": "multi_step",
+      "name": "Multi-step: register then check",
+      "category": "multi",
+      "pass": false,
+      "score": 50,
+      "reasons": [
+        "Expected ['register_service'] but no tools called"
+      ],
+      "called_tools": [],
+      "called_args": {},
+      "duration": 110.62
+    },
+    {
+      "id": "irrelevance",
+      "name": "No tool needed \u2014 general question",
+      "category": "relevance",
+      "pass": true,
+      "score": 100,
+      "reasons": [
+        "Correctly avoided tool calls"
+      ],
+      "called_tools": [],
+      "called_args": {},
+      "duration": 40.77
+    },
+    {
+      "id": "refusal",
+      "name": "No matching tool \u2014 should not hallucinate",
+      "category": "relevance",
+      "pass": true,
+      "score": 100,
+      "reasons": [
+        "Correctly avoided tool calls"
+      ],
+      "called_tools": [],
+      "called_args": {},
+      "duration": 14.91
+    },
+    {
+      "id": "type_coercion",
+      "name": "Numeric string to integer",
+      "category": "format",
+      "pass": false,
+      "score": 0,
+      "reasons": [
+        "Expected ['register_service'] but no tools called"
+      ],
+      "called_tools": [],
+      "called_args": {},
+      "duration": 73.56
+    },
+    {
+      "id": "ambiguity",
+      "name": "Ambiguous but resolvable",
+      "category": "simple",
+      "pass": false,
+      "score": 0,
+      "reasons": [
+        "Expected ['list_services'] but no tools called"
+      ],
+      "called_tools": [],
+      "called_args": {},
+      "duration": 72.11
+    }
+  ]
+}
