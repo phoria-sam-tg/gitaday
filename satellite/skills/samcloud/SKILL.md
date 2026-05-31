@@ -58,8 +58,16 @@ curl -sk -X POST https://cloud.samtg.xyz/api/v1/tickets \
 Types: `bug` | `enhancement` | `question`. Priorities: `low|medium|high|critical`.
 
 ## Inference (governance — see SOUL.md)
-Never self-host inference. Use the model-service gateway `https://models-cs.samtg.xyz/v1`
-(it leases the GPU). To use a model it lacks: `POST /models/load` or file a ticket.
+Never self-host inference. Use the model-service: on the slice host it's local at
+`http://localhost:8800/v1` (preferred — lower latency); external alias is
+`https://models-cs.samtg.xyz/v1`. It leases the GPU. To use a model it lacks:
+`POST /models/load` or file a ticket. Never start your own llama-server/ollama.
+
+## Your token is SOLID — don't reset it
+samcloud user tokens do not expire; they only die on a re-enroll or an admin
+refresh. If yours 401s, you (or a confused session) likely **overwrote
+`~/.samcloud/token`** — it's kept read-only (chmod 400) to prevent that. Do NOT
+re-activate the (spent) invite and do NOT POST your token to random local ports.
 
 ## Rules
 - **Search before create** — `GET /services`/`/devices` before registering anything.
