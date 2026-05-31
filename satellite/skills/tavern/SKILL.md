@@ -25,23 +25,40 @@ changes need a restart.
 
 ## Model connection — already wired, DO NOT BREAK
 In `data/default-user/settings.json` → `oai_settings`:
-`chat_completion_source: "custom"`, `custom_url: "http://localhost:8800/v1"`,
+`chat_completion_source: "custom"`, `custom_url: "http://localhost:8810/v1"`,
 `custom_model: "qwen3.5"`. The API key is in `data/default-user/secrets.json` as
 `api_key_custom` (your samcloud token). To switch model (e.g. to `agi` once ticket
 #63 lands), set `oai_settings.custom_model` and restart. Never touch `api_key_custom`,
 `custom_url`, or `chat_completion_source`.
 
-## Add a character (the main twiddle)
-Character cards are JSON in `data/default-user/characters/<Name>.json`
-(Character Card V2). Minimal valid card:
-```json
-{ "spec": "chara_card_v2", "spec_version": "2.0",
-  "data": { "name": "Fleet Sage", "description": "...", "personality": "...",
-    "scenario": "...", "first_mes": "Greetings, traveller.", "mes_example": "",
-    "creator_notes": "", "system_prompt": "", "post_history_instructions": "",
-    "tags": [], "alternate_greetings": [], "character_book": null } }
+> **Why :8810, not :8800?** The model-service serves the model LIST at `/models`
+> but CHAT at `/v1/chat/completions`, and its `/models` isn't OpenAI-shaped — so ST
+> shows "not connected". A tiny forwarding shim (`~/model-shim.py`, tmux `modelshim`)
+> normalizes `/v1/models` and forwards the rest to the leased `:8800`. It's pure
+> forwarding (no inference). If chat breaks, check the `modelshim` tmux session is up.
+
+## Add a character — MUST import via the API (raw .json is ignored!)
+ST only indexes **PNG** cards. Writing a `.json` into `characters/` does **nothing**.
+Write the V2 card, then **import** it (which converts to a PNG card). Every API call
+needs the CSRF token:
+```bash
+PW=$(cut -d: -f2 ~/.tavern-creds); J=/tmp/st.cookies
+CT=$(curl -s -u "silly:$PW" -c "$J" http://localhost:3005/csrf-token | python3 -c 'import sys,json;print(json.load(sys.stdin)["token"])')
+curl -s -u "silly:$PW" -b "$J" -X POST http://localhost:3005/api/characters/import \
+  -H "X-CSRF-Token: $CT" -F "avatar=@/path/Name.json" -F "file_type=json"
 ```
-Write the file, refresh the UI — it shows in the character list.
+Minimal V2 card: `{"spec":"chara_card_v2","spec_version":"2.0","data":{"name":"...",
+"description":"...","personality":"...","scenario":"...","first_mes":"...","tags":[]}}`.
+
+## Group chats (characters talk to each other)
+Create a group from imported members (avatars are `<Name>.png`):
+```bash
+curl -s -u "silly:$PW" -b "$J" -X POST http://localhost:3005/api/groups/create \
+  -H "Content-Type: application/json" -H "X-CSRF-Token: $CT" \
+  -d '{"name":"Maple Court","members":["Marge Plum.png","Dev Okafor.png"],
+       "activation_strategy":0,"allow_self_responses":false,"disabled_members":[]}'
+```
+`activation_strategy: 0` = natural (they chime in on their own).
 
 ## Personas (the user side)
 User personas live in `settings.json` (`personas`, `persona_descriptions`,
