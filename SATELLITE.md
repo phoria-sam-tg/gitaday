@@ -36,6 +36,22 @@ The build tooling and run-by-run outcomes live in `sysadminhelpers/` (hooks
 `install-hermes.sh` / `wire-hermes.sh`; `RUNLOG.md` runs 0001–0005). This file
 is the *why*; that repo is the *how* and *what-happened*.
 
+## Our zero (reached 2026-05-31)
+
+The agreed baseline — the satellite stood up and **proven on real work**. First
+job handed to the resident: gitaday's own original mission, "spin up gits, vanilla."
+
+| Repo | What the executor did, unsupervised |
+|------|-------------------------------------|
+| claw-empire | cloned + `pnpm install`; identified stack; notes + run cmd (`pnpm dev:local` :8790) |
+| autoresearch | cloned; correctly assessed as a 3-file harness (prepare/train/program.md), GPU-bound |
+| **llama.cpp** *(its own pick)* | cloned + **built from source** (CMake → `build/bin/`); accurate quick-start notes |
+
+It picked llama.cpp itself — on-theme (the local-inference substrate it runs on).
+Each repo got a `SETUP-NOTES.md`; logs in `~/gits/_notes/`. A 35B local model, in
+a non-admin isolated actor, cloned/assessed/built real repos including a C++ build.
+The 7B wall gitaday hit in March is gone. **This is the spot we return to.**
+
 ## How I (the oracle) monitor gitaday-from-outside
 
 No meta-dashboard — the universe is already the observability plane:
