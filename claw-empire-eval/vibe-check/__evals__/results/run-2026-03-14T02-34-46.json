@@ -1,0 +1,46 @@
+{
+  "runId": "run-1773455506468-gx83v9x",
+  "total": 1,
+  "passed": 0,
+  "failed": 0,
+  "skipped": 0,
+  "errors": 1,
+  "passRate": 0,
+  "results": [
+    {
+      "evalCase": {
+        "id": "basic-directive",
+        "name": "Basic Directive - Task Creation",
+        "description": "Send a simple greeting directive to Claw-Empire and verify that at least one task gets created in the system. This tests the most fundamental part of the pipeline: directive ingestion.",
+        "category": "basic",
+        "tags": [
+          "smoke",
+          "pipeline",
+          "basic"
+        ],
+        "enabled": true,
+        "timeout": 180000,
+        "prompt": "Hello team! Please acknowledge this message and confirm the system is operational.",
+        "expectedBehavior": "The directive should be accepted, a meeting should occur, and at least one task should be created from it.",
+        "judges": [
+          "task-created"
+        ]
+      },
+      "success": false,
+      "output": "",
+      "duration": 0,
+      "judgeResults": [],
+      "error": {
+        "toolCalls": []
+      },
+      "errorType": "timeout",
+      "retryCount": 1,
+      "flaky": false,
+      "retryErrors": [
+        "Attempt 1: timeout - Agent execution timed out after 180000ms"
+      ]
+    }
+  ],
+  "duration": 180015,
+  "timestamp": "2026-03-14T02:34:46.483Z"
+}

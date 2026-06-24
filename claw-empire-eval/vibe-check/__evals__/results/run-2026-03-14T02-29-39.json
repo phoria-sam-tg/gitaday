@@ -1,0 +1,145 @@
+{
+  "runId": "run-1773455379409-0byz9z2",
+  "total": 3,
+  "passed": 0,
+  "failed": 3,
+  "skipped": 0,
+  "errors": 0,
+  "passRate": 0,
+  "results": [
+    {
+      "evalCase": {
+        "id": "routing-to-dev",
+        "name": "Routing - Dev Department",
+        "description": "Send a coding-specific directive and verify that the resulting subtasks are routed to the 'dev' department. This tests the meeting/delegation logic that assigns work to the correct department.",
+        "category": "routing",
+        "tags": [
+          "routing",
+          "dev",
+          "pipeline"
+        ],
+        "enabled": true,
+        "timeout": 180000,
+        "prompt": "Write a utility function in TypeScript that converts a camelCase string to snake_case. Include proper type annotations and handle edge cases.",
+        "expectedAgent": "dev",
+        "judges": [
+          "task-created",
+          "department-routing"
+        ]
+      },
+      "success": false,
+      "output": "{\"error\":\"No directive ID returned\",\"response\":{\"ok\":true,\"message\":{\"id\":\"c433d2c0-d38a-493c-8cba-1cf151b0ba30\",\"sender_type\":\"ceo\",\"sender_id\":null,\"receiver_type\":\"all\",\"receiver_id\":null,\"content\":\"Write a utility function in TypeScript that converts a camelCase string to snake_case. Include proper type annotations and handle edge cases.\",\"message_type\":\"directive\",\"task_id\":null,\"idempotency_key\":null,\"created_at\":1773455379447}},\"tasks\":[],\"subtasks\":[],\"sandboxFiles\":[]}",
+      "duration": 29,
+      "judgeResults": [
+        {
+          "judgeId": "task-created",
+          "passed": false,
+          "score": 0,
+          "confidence": 1,
+          "reasoning": "No tasks were created from the directive",
+          "details": {}
+        },
+        {
+          "judgeId": "department-routing",
+          "passed": false,
+          "score": 0,
+          "confidence": 1,
+          "reasoning": "No subtasks found at all (expected routing to \"dev\")"
+        }
+      ],
+      "toolCalls": [],
+      "retryCount": 0
+    },
+    {
+      "evalCase": {
+        "id": "code-gen-hello",
+        "name": "Code Generation - hello.py",
+        "description": "Send a directive requesting creation of a hello.py file. Verify the full pipeline: directive -> meeting -> subtask -> agent writes code -> file appears in the worktree sandbox.",
+        "category": "code-gen",
+        "tags": [
+          "codegen",
+          "pipeline",
+          "artifacts"
+        ],
+        "enabled": true,
+        "timeout": 240000,
+        "prompt": "Create a Python file called hello.py that prints 'Hello from Claw-Empire!' when executed. Place it in the project sandbox directory.",
+        "targetFiles": [
+          "hello.py"
+        ],
+        "syntaxValidation": false,
+        "buildVerification": false,
+        "judges": [
+          "task-created",
+          "artifact-exists"
+        ]
+      },
+      "success": false,
+      "output": "{\"error\":\"No directive ID returned\",\"response\":{\"ok\":true,\"message\":{\"id\":\"a643818d-ee41-4e9f-af4e-fd17bb0bdc47\",\"sender_type\":\"ceo\",\"sender_id\":null,\"receiver_type\":\"all\",\"receiver_id\":null,\"content\":\"Create a Python file called hello.py that prints 'Hello from Claw-Empire!' when executed. Place it in the project sandbox directory.\",\"message_type\":\"directive\",\"task_id\":null,\"idempotency_key\":null,\"created_at\":1773455379454}},\"tasks\":[],\"subtasks\":[],\"sandboxFiles\":[]}",
+      "duration": 5,
+      "judgeResults": [
+        {
+          "judgeId": "task-created",
+          "passed": false,
+          "score": 0,
+          "confidence": 1,
+          "reasoning": "No tasks were created from the directive",
+          "details": {}
+        },
+        {
+          "judgeId": "artifact-exists",
+          "passed": false,
+          "score": 0,
+          "confidence": 1,
+          "reasoning": "Missing artifacts: hello.py",
+          "details": {
+            "found": [],
+            "missing": [
+              "hello.py"
+            ],
+            "allSandboxFiles": []
+          }
+        }
+      ],
+      "toolCalls": [],
+      "retryCount": 0
+    },
+    {
+      "evalCase": {
+        "id": "basic-directive",
+        "name": "Basic Directive - Task Creation",
+        "description": "Send a simple greeting directive to Claw-Empire and verify that at least one task gets created in the system. This tests the most fundamental part of the pipeline: directive ingestion.",
+        "category": "basic",
+        "tags": [
+          "smoke",
+          "pipeline",
+          "basic"
+        ],
+        "enabled": true,
+        "timeout": 180000,
+        "prompt": "Hello team! Please acknowledge this message and confirm the system is operational.",
+        "expectedBehavior": "The directive should be accepted, a meeting should occur, and at least one task should be created from it.",
+        "judges": [
+          "task-created"
+        ]
+      },
+      "success": false,
+      "output": "{\"error\":\"No directive ID returned\",\"response\":{\"ok\":true,\"message\":{\"id\":\"bbe3d0b0-4751-48c6-9c27-317170483365\",\"sender_type\":\"ceo\",\"sender_id\":null,\"receiver_type\":\"all\",\"receiver_id\":null,\"content\":\"Hello team! Please acknowledge this message and confirm the system is operational.\",\"message_type\":\"directive\",\"task_id\":null,\"idempotency_key\":null,\"created_at\":1773455379459}},\"tasks\":[],\"subtasks\":[],\"sandboxFiles\":[]}",
+      "duration": 4,
+      "judgeResults": [
+        {
+          "judgeId": "task-created",
+          "passed": false,
+          "score": 0,
+          "confidence": 1,
+          "reasoning": "No tasks were created from the directive",
+          "details": {}
+        }
+      ],
+      "toolCalls": [],
+      "retryCount": 0
+    }
+  ],
+  "duration": 52,
+  "timestamp": "2026-03-14T02:29:39.461Z"
+}

@@ -1,0 +1,54 @@
+{
+  "runId": "run-1773455752879-rlawcnn",
+  "total": 1,
+  "passed": 1,
+  "failed": 0,
+  "skipped": 0,
+  "errors": 0,
+  "passRate": 1,
+  "results": [
+    {
+      "evalCase": {
+        "id": "basic-directive",
+        "name": "Basic Directive - Task Creation",
+        "description": "Send a simple greeting directive to Claw-Empire and verify that at least one task gets created in the system. This tests the most fundamental part of the pipeline: directive ingestion.",
+        "category": "basic",
+        "tags": [
+          "smoke",
+          "pipeline",
+          "basic"
+        ],
+        "enabled": true,
+        "timeout": 180000,
+        "prompt": "Hello team! Please acknowledge this message and confirm the system is operational.",
+        "expectedBehavior": "The directive should be accepted, a meeting should occur, and at least one task should be created from it.",
+        "judges": [
+          "task-created"
+        ]
+      },
+      "success": true,
+      "output": "{\n  \"directive_id\": \"e1dd2b52-0db5-4423-9c1a-ee325a1368d3\",\n  \"tasks\": [\n    {\n      \"id\": \"0702863a-82ae-468e-aaf0-ae23736c2f75\",\n      \"title\": \"Hello team! Please acknowledge this message and confirm t...\",\n      \"description\": \"[CEO] Hello team! Please acknowledge this message and confirm the system is operational.\\n[PROJECT] Claw Sandbox\\n[PROJECT CORE GOAL] A sandbox workspace for the AI office agents to experiment, write code, and collaborate on tasks.\\n[ROUND GOAL] 프로젝트 핵심목표(\\\"A sandbox workspace for the AI office agents to experiment, write code, and collaborate on tasks.\\\")를 유지하면서 이번 요청(\\\"Hello team! Please acknowledge this message and confirm the system is operational.\\\")을 이번 라운드에서 실행 가능한 산출물로 완수\",\n      \"department_id\": \"planning\",\n      \"assigned_agent_id\": \"dad4e578-6dce-4c3c-8f8a-42f345124191\",\n      \"project_id\": \"02935290-0d63-4d29-b895-f31396dd661f\",\n      \"status\": \"planned\",\n      \"priority\": 1,\n      \"task_type\": \"general\",\n      \"workflow_pack_key\": \"development\",\n      \"workflow_meta_json\": null,\n      \"output_format\": null,\n      \"project_path\": \"/Users/sam/Documents/Projects/gitaday/claw-sandbox\",\n      \"result\": null,\n      \"started_at\": null,\n      \"completed_at\": null,\n      \"created_at\": 1773455758611,\n      \"updated_at\": 1773455758611,\n      \"base_branch\": null,\n      \"source_task_id\": null,\n      \"hidden\": 0,\n      \"agent_name\": \"Sage\",\n      \"agent_avatar\": \"🧠\",\n      \"department_name\": \"Planning\",\n      \"department_icon\": \"📊\",\n      \"project_name\": \"Claw Sandbox\",\n      \"project_core_goal\": \"A sandbox workspace for the AI office agents to experiment, write code, and collaborate on tasks.\",\n      \"subtask_total\": 0,\n      \"subtask_done\": 0\n    }\n  ],\n  \"subtasks\": [],\n  \"sandboxFiles\": [],\n  \"newFiles\": [],\n  \"taskCount\": 1\n}",
+      "duration": 10041,
+      "judgeResults": [
+        {
+          "judgeId": "task-created",
+          "passed": true,
+          "score": 100,
+          "confidence": 1,
+          "reasoning": "1 task(s) created successfully",
+          "details": {
+            "taskCount": 1,
+            "taskStatuses": [
+              "planned"
+            ]
+          }
+        }
+      ],
+      "toolCalls": [],
+      "retryCount": 0,
+      "flaky": false
+    }
+  ],
+  "duration": 10053,
+  "timestamp": "2026-03-14T02:36:02.932Z"
+}

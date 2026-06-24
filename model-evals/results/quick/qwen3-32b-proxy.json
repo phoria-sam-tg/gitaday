@@ -1,0 +1,128 @@
+{
+  "model": "Qwen3-32B-Q6_K-via-proxy",
+  "timestamp": "2026-04-03T10:29:57",
+  "summary": {
+    "passed": 0,
+    "total": 10,
+    "avg_score": 0.0
+  },
+  "categories": {
+    "simple": {
+      "pass": 0,
+      "total": 5,
+      "score": 0
+    },
+    "parallel": {
+      "pass": 0,
+      "total": 1,
+      "score": 0
+    },
+    "multi": {
+      "pass": 0,
+      "total": 1,
+      "score": 0
+    },
+    "relevance": {
+      "pass": 0,
+      "total": 2,
+      "score": 0
+    },
+    "format": {
+      "pass": 0,
+      "total": 1,
+      "score": 0
+    }
+  },
+  "results": [
+    {
+      "id": "simple_single",
+      "name": "Simple single tool call",
+      "category": "simple",
+      "pass": false,
+      "score": 0,
+      "error": "Client error '404 Not Found' for url 'https://models-stg.samtg.xyz:9443/v1/chat/completions'\nFor more information check: https://httpstatuses.com/404",
+      "duration": 0.09996604919433594
+    },
+    {
+      "id": "correct_selection",
+      "name": "Select correct tool from 5 options",
+      "category": "simple",
+      "pass": false,
+      "score": 0,
+      "error": "Client error '404 Not Found' for url 'https://models-stg.samtg.xyz:9443/v1/chat/completions'\nFor more information check: https://httpstatuses.com/404",
+      "duration": 0.07611584663391113
+    },
+    {
+      "id": "multi_param",
+      "name": "Multiple required + optional params",
+      "category": "simple",
+      "pass": false,
+      "score": 0,
+      "error": "Client error '404 Not Found' for url 'https://models-stg.samtg.xyz:9443/v1/chat/completions'\nFor more information check: https://httpstatuses.com/404",
+      "duration": 0.08040618896484375
+    },
+    {
+      "id": "enum_constraint",
+      "name": "Respect enum constraints",
+      "category": "simple",
+      "pass": false,
+      "score": 0,
+      "error": "Client error '404 Not Found' for url 'https://models-stg.samtg.xyz:9443/v1/chat/completions'\nFor more information check: https://httpstatuses.com/404",
+      "duration": 0.09244704246520996
+    },
+    {
+      "id": "parallel_calls",
+      "name": "Parallel tool calls",
+      "category": "parallel",
+      "pass": false,
+      "score": 0,
+      "error": "Client error '404 Not Found' for url 'https://models-stg.samtg.xyz:9443/v1/chat/completions'\nFor more information check: https://httpstatuses.com/404",
+      "duration": 0.0958089828491211
+    },
+    {
+      "id": "multi_step",
+      "name": "Multi-step: register then check",
+      "category": "multi",
+      "pass": false,
+      "score": 0,
+      "error": "Client error '404 Not Found' for url 'https://models-stg.samtg.xyz:9443/v1/chat/completions'\nFor more information check: https://httpstatuses.com/404",
+      "duration": 0.1969301700592041
+    },
+    {
+      "id": "irrelevance",
+      "name": "No tool needed \u2014 general question",
+      "category": "relevance",
+      "pass": false,
+      "score": 0,
+      "error": "Client error '404 Not Found' for url 'https://models-stg.samtg.xyz:9443/v1/chat/completions'\nFor more information check: https://httpstatuses.com/404",
+      "duration": 0.08550691604614258
+    },
+    {
+      "id": "refusal",
+      "name": "No matching tool \u2014 should not hallucinate",
+      "category": "relevance",
+      "pass": false,
+      "score": 0,
+      "error": "Client error '404 Not Found' for url 'https://models-stg.samtg.xyz:9443/v1/chat/completions'\nFor more information check: https://httpstatuses.com/404",
+      "duration": 0.2231740951538086
+    },
+    {
+      "id": "type_coercion",
+      "name": "Numeric string to integer",
+      "category": "format",
+      "pass": false,
+      "score": 0,
+      "error": "Client error '404 Not Found' for url 'https://models-stg.samtg.xyz:9443/v1/chat/completions'\nFor more information check: https://httpstatuses.com/404",
+      "duration": 0.132584810256958
+    },
+    {
+      "id": "ambiguity",
+      "name": "Ambiguous but resolvable",
+      "category": "simple",
+      "pass": false,
+      "score": 0,
+      "error": "Client error '404 Not Found' for url 'https://models-stg.samtg.xyz:9443/v1/chat/completions'\nFor more information check: https://httpstatuses.com/404",
+      "duration": 0.12524104118347168
+    }
+  ]
+}

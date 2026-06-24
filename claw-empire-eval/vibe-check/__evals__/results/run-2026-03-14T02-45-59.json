@@ -1,0 +1,168 @@
+{
+  "runId": "run-1773455983959-gkwtrow",
+  "total": 3,
+  "passed": 1,
+  "failed": 1,
+  "skipped": 0,
+  "errors": 1,
+  "passRate": 0.3333333333333333,
+  "results": [
+    {
+      "evalCase": {
+        "id": "routing-to-dev",
+        "name": "Routing - Dev Department",
+        "description": "Send a coding-specific directive and verify that the resulting subtasks are routed to the 'dev' department. This tests the meeting/delegation logic that assigns work to the correct department.",
+        "category": "routing",
+        "tags": [
+          "routing",
+          "dev",
+          "pipeline"
+        ],
+        "enabled": true,
+        "timeout": 180000,
+        "prompt": "Write a utility function in TypeScript that converts a camelCase string to snake_case. Include proper type annotations and handle edge cases.",
+        "expectedAgent": "dev",
+        "judges": [
+          "task-created",
+          "department-routing"
+        ]
+      },
+      "success": true,
+      "output": "{\n  \"directive_id\": \"6cab6ea5-4378-4253-8473-1dda6c5a4332\",\n  \"tasks\": [\n    {\n      \"id\": \"19c12b75-78c8-4b8f-8835-3520effa0a22\",\n      \"title\": \"Write a utility function in TypeScript that converts a ca...\",\n      \"description\": \"[CEO] Write a utility function in TypeScript that converts a camelCase string to snake_case. Include proper type annotations and handle edge cases.\\n[PROJECT] Claw Sandbox\\n[PROJECT CORE GOAL] A sandbox workspace for the AI office agents to experiment, write code, and collaborate on tasks.\\n[ROUND GOAL] 프로젝트 핵심목표(\\\"A sandbox workspace for the AI office agents to experiment, write code, and collaborate on tasks.\\\")를 유지하면서 이번 요청(\\\"Write a utility function in TypeScript that converts a camelCase string to snake_case. Include proper type annotations and handle edge cases.\\\")을 이번 라운드에서 실행 가능한 산출물로 완수\\n\\n[PROJECT MEMO] Planned Kickoff round 1 unresolved improvement items (2026-03-14 02:42)\\n- Planning Sage: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Let's kick off our planning meeting to tackle the new task. Can each team lead provide concrete supplement points and action items, especially fo…\\n- Development Aria: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Development team can provide the following subtasks for this utility function: ```typescript #camel_to_snake.ts /** * Converts a camelCase str…\\n- Design Pixel: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Given that the development of a TypeScript utility function is the primary focus, let's ensure the UI/UX design aligns with technical needs. For t…\\n- QA/QC Hawk: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- QA/QC Checklist Supplement: - Confirm that all edge cases (e.g., empty strings, single-character strings, already snake_case strings) are properly h…\\n- DevSecOps Vault: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Vault from DevSecOps — acknowledged! Action item addition: Ensure security best practices are reviewed and applied to the utility function `cam…\\n- Operations Atlas: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Operations will ensure that server logs are set up to monitor the deployment of this utility function. Also, plan a monitoring solution to tra…\\n- Planning Sage: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Great progress so far! Let's summarize: 1. Development will create a `camel_to_snake.ts` file with proper type annotations. 2. Design will ensure…\\n- Planning Sage: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Action item for Sage (Planning Team Lead): Work with the development team to finalize the utility function specification, including type annotati…\\n- Development Aria: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Proposal for immediate action: ```typescript #camel_to_snake.ts /** * Converts a camelCase string to snake_case. */ function camelToSnake(str:…\\n- Design Pixel: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Action item for Pixel (Design Team Lead): - Create design guidelines or mockups that align with the technical requirement of converting a camelCas…\",\n      \"department_id\": \"planning\",\n      \"assigned_agent_id\": \"25ead8ea-2d07-401c-9b1a-7abdfcbd450b\",\n      \"project_id\": \"02935290-0d63-4d29-b895-f31396dd661f\",\n      \"status\": \"in_progress\",\n      \"priority\": 1,\n      \"task_type\": \"general\",\n      \"workflow_pack_key\": \"development\",\n      \"workflow_meta_json\": null,\n      \"output_format\": null,\n      \"project_path\": \"/Users/sam/Documents/Projects/gitaday/claw-sandbox\",\n      \"result\": null,\n      \"started_at\": 1773456126741,\n      \"completed_at\": null,\n      \"created_at\": 1773455990709,\n      \"updated_at\": 1773456126741,\n      \"base_branch\": null,\n      \"source_task_id\": null,\n      \"hidden\": 0,\n      \"agent_name\": \"Clio\",\n      \"agent_avatar\": \"📝\",\n      \"department_name\": \"Planning\",\n      \"department_icon\": \"📊\",\n      \"project_name\": \"Claw Sandbox\",\n      \"project_core_goal\": \"A sandbox workspace for the AI office agents to experiment, write code, and collaborate on tasks.\",\n      \"subtask_total\": 15,\n      \"subtask_done\": 0\n    }\n  ],\n  \"subtasks\": [\n    {\n      \"id\": \"0c57d581-d0cd-46c2-a5da-995590e97c78\",\n      \"task_id\": \"19c12b75-78c8-4b8f-8835-3520effa0a22\",\n      \"title\": \"Finalize detailed execution plan from planned meeting\",\n      \"description\": \"Finalize detailed task sequence and deliverable criteria from the planned meeting. (Write a utility function in TypeScript that converts a ca...)\",\n      \"status\": \"pending\",\n      \"assigned_agent_id\": \"dad4e578-6dce-4c3c-8f8a-42f345124191\",\n      \"blocked_reason\": null,\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456122228,\n      \"completed_at\": null,\n      \"target_department_id\": null,\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"c69ff53f-cef6-4e8f-a83b-3fe65db9321b\",\n      \"task_id\": \"19c12b75-78c8-4b8f-8835-3520effa0a22\",\n      \"title\": \"[Plan Item] [api:ollama] Provider: Ollama Local, Model: qwen2.5:7…\",\n      \"description\": \"Convert this planned-meeting improvement note into an executable task: Planning Sage: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Let's kick off our planning meeting to tackle the new task. Can each team lead provide concrete supplement points and action items, especially fo…\",\n      \"status\": \"pending\",\n      \"assigned_agent_id\": \"dad4e578-6dce-4c3c-8f8a-42f345124191\",\n      \"blocked_reason\": null,\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456122228,\n      \"completed_at\": null,\n      \"target_department_id\": null,\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"20d8ee00-8d1e-4131-92d6-77ca9d9db020\",\n      \"task_id\": \"19c12b75-78c8-4b8f-8835-3520effa0a22\",\n      \"title\": \"[Plan Item] [api:ollama] Provider: Ollama Local, Model: qwen2.5:7…\",\n      \"description\": \"Convert this planned-meeting improvement note into an executable task: Development Aria: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Development team can provide the following subtasks for this utility function: ```typescript #camel_to_snake.ts /** * Converts a camelCase str…\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"e02e3f18-3258-49d1-9609-bc8920f0db74\",\n      \"blocked_reason\": \"Waiting for Development collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456122228,\n      \"completed_at\": null,\n      \"target_department_id\": \"dev\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"fcf366ea-570b-4638-b850-8f43f0f22c41\",\n      \"task_id\": \"19c12b75-78c8-4b8f-8835-3520effa0a22\",\n      \"title\": \"[Plan Item] [api:ollama] Provider: Ollama Local, Model: qwen2.5:7…\",\n      \"description\": \"Convert this planned-meeting improvement note into an executable task: Design Pixel: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Given that the development of a TypeScript utility function is the primary focus, let's ensure the UI/UX design aligns with technical needs. For t…\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"efdb115a-40a4-4e12-9219-bfc0d2afc658\",\n      \"blocked_reason\": \"Waiting for Design collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456122228,\n      \"completed_at\": null,\n      \"target_department_id\": \"design\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"99affb4d-9197-450c-b029-116a9aca7ad7\",\n      \"task_id\": \"19c12b75-78c8-4b8f-8835-3520effa0a22\",\n      \"title\": \"[Plan Item] [api:ollama] Provider: Ollama Local, Model: qwen2.5:7…\",\n      \"description\": \"Convert this planned-meeting improvement note into an executable task: QA/QC Hawk: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- QA/QC Checklist Supplement: - Confirm that all edge cases (e.g., empty strings, single-character strings, already snake_case strings) are properly h…\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"c5fd12f8-45a0-4451-a78c-7d09f5780cee\",\n      \"blocked_reason\": \"Waiting for QA/QC collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456122228,\n      \"completed_at\": null,\n      \"target_department_id\": \"qa\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"0ac8fc21-03aa-481f-91f2-b8612d2d5b7a\",\n      \"task_id\": \"19c12b75-78c8-4b8f-8835-3520effa0a22\",\n      \"title\": \"[Plan Item] [api:ollama] Provider: Ollama Local, Model: qwen2.5:7…\",\n      \"description\": \"Convert this planned-meeting improvement note into an executable task: DevSecOps Vault: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Vault from DevSecOps — acknowledged! Action item addition: Ensure security best practices are reviewed and applied to the utility function `cam…\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"02d46fe5-eb9c-4ff6-85c3-0e7e4a6e3b82\",\n      \"blocked_reason\": \"Waiting for DevSecOps collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456122228,\n      \"completed_at\": null,\n      \"target_department_id\": \"devsecops\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"929eddab-f258-4876-bacf-b4480c862a94\",\n      \"task_id\": \"19c12b75-78c8-4b8f-8835-3520effa0a22\",\n      \"title\": \"[Plan Item] [api:ollama] Provider: Ollama Local, Model: qwen2.5:7…\",\n      \"description\": \"Convert this planned-meeting improvement note into an executable task: Operations Atlas: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Operations will ensure that server logs are set up to monitor the deployment of this utility function. Also, plan a monitoring solution to tra…\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"7eb827ab-03f3-4789-9287-b26899440cdc\",\n      \"blocked_reason\": \"Waiting for Operations collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456122228,\n      \"completed_at\": null,\n      \"target_department_id\": \"operations\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"99887966-1287-468f-a25b-fea80c5d8443\",\n      \"task_id\": \"19c12b75-78c8-4b8f-8835-3520effa0a22\",\n      \"title\": \"[Plan Item] [api:ollama] Provider: Ollama Local, Model: qwen2.5:7…\",\n      \"description\": \"Convert this planned-meeting improvement note into an executable task: Planning Sage: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Great progress so far! Let's summarize: 1. Development will create a `camel_to_snake.ts` file with proper type annotations. 2. Design will ensure…\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"e02e3f18-3258-49d1-9609-bc8920f0db74\",\n      \"blocked_reason\": \"Waiting for Development collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456122228,\n      \"completed_at\": null,\n      \"target_department_id\": \"dev\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"d7406061-5702-47bd-8468-82822bf9087f\",\n      \"task_id\": \"19c12b75-78c8-4b8f-8835-3520effa0a22\",\n      \"title\": \"[Plan Item] [api:ollama] Provider: Ollama Local, Model: qwen2.5:7…\",\n      \"description\": \"Convert this planned-meeting improvement note into an executable task: Planning Sage: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Action item for Sage (Planning Team Lead): Work with the development team to finalize the utility function specification, including type annotati…\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"e02e3f18-3258-49d1-9609-bc8920f0db74\",\n      \"blocked_reason\": \"Waiting for Development collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456122228,\n      \"completed_at\": null,\n      \"target_department_id\": \"dev\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"c8be2a1a-c6a9-4683-98c3-7163c01d5616\",\n      \"task_id\": \"19c12b75-78c8-4b8f-8835-3520effa0a22\",\n      \"title\": \"[Collaboration] Produce Development deliverable\",\n      \"description\": \"Create and share the Development-owned deliverable based on the planned meeting.\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"e02e3f18-3258-49d1-9609-bc8920f0db74\",\n      \"blocked_reason\": \"Waiting for Development collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456122228,\n      \"completed_at\": null,\n      \"target_department_id\": \"dev\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"1f679bcf-1125-4f84-9c60-33fe829877d7\",\n      \"task_id\": \"19c12b75-78c8-4b8f-8835-3520effa0a22\",\n      \"title\": \"[Collaboration] Produce Design deliverable\",\n      \"description\": \"Create and share the Design-owned deliverable based on the planned meeting.\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"efdb115a-40a4-4e12-9219-bfc0d2afc658\",\n      \"blocked_reason\": \"Waiting for Design collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456122228,\n      \"completed_at\": null,\n      \"target_department_id\": \"design\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"98fa2260-4644-4e04-af91-d8b631574a5b\",\n      \"task_id\": \"19c12b75-78c8-4b8f-8835-3520effa0a22\",\n      \"title\": \"[Collaboration] Produce QA/QC deliverable\",\n      \"description\": \"Create and share the QA/QC-owned deliverable based on the planned meeting.\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"c5fd12f8-45a0-4451-a78c-7d09f5780cee\",\n      \"blocked_reason\": \"Waiting for QA/QC collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456122228,\n      \"completed_at\": null,\n      \"target_department_id\": \"qa\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"018cb99b-1b5c-42c7-890a-c142cc7f01bf\",\n      \"task_id\": \"19c12b75-78c8-4b8f-8835-3520effa0a22\",\n      \"title\": \"[Collaboration] Produce DevSecOps deliverable\",\n      \"description\": \"Create and share the DevSecOps-owned deliverable based on the planned meeting.\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"02d46fe5-eb9c-4ff6-85c3-0e7e4a6e3b82\",\n      \"blocked_reason\": \"Waiting for DevSecOps collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456122228,\n      \"completed_at\": null,\n      \"target_department_id\": \"devsecops\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"7fe87952-a4d8-43aa-8a8d-436ae336f7c8\",\n      \"task_id\": \"19c12b75-78c8-4b8f-8835-3520effa0a22\",\n      \"title\": \"[Collaboration] Produce Operations deliverable\",\n      \"description\": \"Create and share the Operations-owned deliverable based on the planned meeting.\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"7eb827ab-03f3-4789-9287-b26899440cdc\",\n      \"blocked_reason\": \"Waiting for Operations collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456122228,\n      \"completed_at\": null,\n      \"target_department_id\": \"operations\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"f719d047-6617-473d-95bf-c93bff78209e\",\n      \"task_id\": \"19c12b75-78c8-4b8f-8835-3520effa0a22\",\n      \"title\": \"Consolidate department deliverables and finalize package\",\n      \"description\": \"Collect related-department outputs, merge into one package, and prepare the review submission.\",\n      \"status\": \"pending\",\n      \"assigned_agent_id\": \"dad4e578-6dce-4c3c-8f8a-42f345124191\",\n      \"blocked_reason\": null,\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456122228,\n      \"completed_at\": null,\n      \"target_department_id\": null,\n      \"delegated_task_id\": null\n    }\n  ],\n  \"sandboxFiles\": [],\n  \"newFiles\": [],\n  \"taskCount\": 1\n}",
+      "duration": 165198,
+      "judgeResults": [
+        {
+          "judgeId": "task-created",
+          "passed": true,
+          "score": 100,
+          "confidence": 1,
+          "reasoning": "1 task(s) created successfully",
+          "details": {
+            "taskCount": 1,
+            "taskStatuses": [
+              "in_progress"
+            ]
+          }
+        },
+        {
+          "judgeId": "department-routing",
+          "passed": true,
+          "score": 100,
+          "confidence": 1,
+          "reasoning": "4 item(s) routed to \"dev\" department (4 subtask(s), 0 task(s))",
+          "details": {
+            "expectedDept": "dev",
+            "subtaskIds": [
+              "20d8ee00-8d1e-4131-92d6-77ca9d9db020",
+              "99887966-1287-468f-a25b-fea80c5d8443",
+              "d7406061-5702-47bd-8468-82822bf9087f",
+              "c8be2a1a-c6a9-4683-98c3-7163c01d5616"
+            ],
+            "taskIds": []
+          }
+        }
+      ],
+      "toolCalls": [],
+      "retryCount": 0,
+      "flaky": false
+    },
+    {
+      "evalCase": {
+        "id": "code-gen-hello",
+        "name": "Code Generation - hello.py",
+        "description": "Send a directive requesting creation of a hello.py file. Verify the full pipeline: directive -> meeting -> subtask -> agent writes code -> file appears in the worktree sandbox.",
+        "category": "code-gen",
+        "tags": [
+          "codegen",
+          "pipeline",
+          "artifacts"
+        ],
+        "enabled": true,
+        "timeout": 240000,
+        "prompt": "Create a Python file called hello.py that prints 'Hello from Claw-Empire!' when executed. Place it in the project sandbox directory.",
+        "targetFiles": [
+          "hello.py"
+        ],
+        "syntaxValidation": false,
+        "buildVerification": false,
+        "judges": [
+          "task-created",
+          "artifact-exists"
+        ]
+      },
+      "success": false,
+      "output": "{\n  \"directive_id\": \"5e2caf38-f301-4b4f-b87c-45945118ed93\",\n  \"tasks\": [\n    {\n      \"id\": \"6fad217c-0ea5-4d52-954f-2a2274a5edb0\",\n      \"title\": \"Create a Python file called hello.py that prints 'Hello f...\",\n      \"description\": \"[CEO] Create a Python file called hello.py that prints 'Hello from Claw-Empire!' when executed. Place it in the project sandbox directory.\\n[PROJECT] Claw Sandbox\\n[PROJECT CORE GOAL] A sandbox workspace for the AI office agents to experiment, write code, and collaborate on tasks.\\n[ROUND GOAL] 프로젝트 핵심목표(\\\"A sandbox workspace for the AI office agents to experiment, write code, and collaborate on tasks.\\\")를 유지하면서 이번 요청(\\\"Create a Python file called hello.py that prints 'Hello from Claw-Empire!' when executed. Place it in the project sandbox directory.\\\")을 이번 라운드에서 실행 가능한 산출물로 완수\\n\\n[PROJECT MEMO] Planned Kickoff round 1 unresolved improvement items (2026-03-14 02:44)\\n- Design Pixel: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Absolutely, let's ensure a clear UI/UX oversight is built into the process. For this `hello.py` file, while it doesn't directly involve UI element…\\n- Operations Atlas: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Great team progress! From an operations perspective, I recommend adding a subtask for setting up environment checks before deploying the `hell…\\n- Development Aria: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Action item: - **Aria (Development Team Lead)**: Create the `hello.py` file with the required content and place it in the designated directory…\\n- Design Pixel: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Action item: - **Pixel (Design Team Lead)**: Create a visual placeholder in our design canvas to indicate where future \\\"Hello from Claw-Empire!\\\" e…\",\n      \"department_id\": \"planning\",\n      \"assigned_agent_id\": \"25ead8ea-2d07-401c-9b1a-7abdfcbd450b\",\n      \"project_id\": \"02935290-0d63-4d29-b895-f31396dd661f\",\n      \"status\": \"review\",\n      \"priority\": 1,\n      \"task_type\": \"general\",\n      \"workflow_pack_key\": \"development\",\n      \"workflow_meta_json\": null,\n      \"output_format\": null,\n      \"project_path\": \"/Users/sam/Documents/Projects/gitaday/claw-sandbox\",\n      \"result\": \"\\n===== task run start 2026-03-14T02:45:03.038Z | provider=api =====\\n[api:ollama] Provider: Ollama Local, Model: qwen2.5:7b\\n---\\n```json\\n{\\n  \\\"task_sessions\\\": [\\n    {\\n      \\\"id\\\": \\\"ec2ce02b-5034-4e68-a340-3b700a3f2c75\\\",\\n      \\\"owner\\\": \\\"25ead8ea-2d07-401c-9b1a-7abdfcbd450b\\\",\\n      \\\"status\\\": \\\"in_progress\\\",\\n      \\\"actions\\\": [\\n        {\\n          \\\"phase\\\": \\\"code_dev\\\",\\n          \\\"action_owner\\\": \\\"Aria (Development Team Lead)\\\",\\n          \\\"description\\\": \\\"Create the `hello.py` file with the required content and place it in the designated directory.\\\"\\n        },\\n        {\\n          \\\"phase\\\": \\\"design\\\",\\n          \\\"action_owner\\\": \\\"Pixel (Design Team Lead)\\\",\\n          \\\"description\\\": \\\"Create a visual placeholder in our design canvas to indicate where future 'Hello from Claw-Empire!' elements might integrate, even though this is a basic script.\\\"\\n        },\\n        {\\n          \\\"phase\\\": \\\"qa\\\",\\n          \\\"action_owner\\\": \\\"Hawk (QA/QC Team Lead)\\\",\\n          \\\"description\\\": \\\"Plan and document QA steps for verifying that `hello.py` prints 'Hello from Claw-Empire!' correctly after development.\\\"\\n        },\\n        {\\n          \\\"phase\\\": \\\"devsecops\\\",\\n          \\\"action_owner\\\": \\\"Vault (DevSecOps Team Lead)\\\",\\n          \\\"description\\\": \\\"Perform a static code analysis and ensure that the `hello.py` file adheres to our security policies and best practices.\\\"\\n        }\\n      ],\\n      \\\"context_session_id\\\": \\\"ec2ce02b-5034-4e68-a340-3b700a3f2c75\\\",\\n      \\\"project_path\\\": \\\"/Users/sam/Documents/Projects/gitaday/claw-sandbox/.climpire-worktrees/6fad217c\\\",\\n      \\\"latest_code_changes\\\": [\\n        {\\n          \\\"file_name\\\": \\\"hello.py\\\",\\n          \\\"content\\\": \\\"python\\\\n# filename: hello.py\\\\nprint('Hello from Claw-Empire!')\\\"\\n        }\\n      ],\\n      \\\"planning_documentation\\\": []\\n    }\\n  ]\\n}\\n```\\n---\\n[api:ollama] Done.\\n\\n[api:code-extract] Wrote 1 file(s): hello.py\\n\",\n      \"started_at\": 1773456302783,\n      \"completed_at\": null,\n      \"created_at\": 1773456155360,\n      \"updated_at\": 1773456348845,\n      \"base_branch\": null,\n      \"source_task_id\": null,\n      \"hidden\": 0,\n      \"agent_name\": \"Clio\",\n      \"agent_avatar\": \"📝\",\n      \"department_name\": \"Planning\",\n      \"department_icon\": \"📊\",\n      \"project_name\": \"Claw Sandbox\",\n      \"project_core_goal\": \"A sandbox workspace for the AI office agents to experiment, write code, and collaborate on tasks.\",\n      \"subtask_total\": 9,\n      \"subtask_done\": 2\n    }\n  ],\n  \"subtasks\": [\n    {\n      \"id\": \"a7bb30db-7fcd-444e-bd27-4d7d44742ed6\",\n      \"task_id\": \"6fad217c-0ea5-4d52-954f-2a2274a5edb0\",\n      \"title\": \"Finalize detailed execution plan from planned meeting\",\n      \"description\": \"Finalize detailed task sequence and deliverable criteria from the planned meeting. (Create a Python file called hello.py that prints 'Hello f...)\",\n      \"status\": \"done\",\n      \"assigned_agent_id\": \"dad4e578-6dce-4c3c-8f8a-42f345124191\",\n      \"blocked_reason\": null,\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456298271,\n      \"completed_at\": 1773456348845,\n      \"target_department_id\": null,\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"327736a4-4e34-4d49-b0e5-d6b466db7cf1\",\n      \"task_id\": \"6fad217c-0ea5-4d52-954f-2a2274a5edb0\",\n      \"title\": \"[Plan Item] [api:ollama] Provider: Ollama Local, Model: qwen2.5:7…\",\n      \"description\": \"Convert this planned-meeting improvement note into an executable task: Design Pixel: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Absolutely, let's ensure a clear UI/UX oversight is built into the process. For this `hello.py` file, while it doesn't directly involve UI element…\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"efdb115a-40a4-4e12-9219-bfc0d2afc658\",\n      \"blocked_reason\": \"Waiting for Design collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456298271,\n      \"completed_at\": null,\n      \"target_department_id\": \"design\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"ed09d201-3c60-429e-a0e5-1821cb12c8ac\",\n      \"task_id\": \"6fad217c-0ea5-4d52-954f-2a2274a5edb0\",\n      \"title\": \"[Plan Item] [api:ollama] Provider: Ollama Local, Model: qwen2.5:7…\",\n      \"description\": \"Convert this planned-meeting improvement note into an executable task: Operations Atlas: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Great team progress! From an operations perspective, I recommend adding a subtask for setting up environment checks before deploying the `hell…\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"7eb827ab-03f3-4789-9287-b26899440cdc\",\n      \"blocked_reason\": \"Waiting for Operations collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456298271,\n      \"completed_at\": null,\n      \"target_department_id\": \"operations\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"9c5d744b-fe5d-4ec5-9660-465a90640641\",\n      \"task_id\": \"6fad217c-0ea5-4d52-954f-2a2274a5edb0\",\n      \"title\": \"[Plan Item] [api:ollama] Provider: Ollama Local, Model: qwen2.5:7…\",\n      \"description\": \"Convert this planned-meeting improvement note into an executable task: Development Aria: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Action item: - **Aria (Development Team Lead)**: Create the `hello.py` file with the required content and place it in the designated directory…\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"e02e3f18-3258-49d1-9609-bc8920f0db74\",\n      \"blocked_reason\": \"Waiting for Development collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456298271,\n      \"completed_at\": null,\n      \"target_department_id\": \"dev\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"be3220cc-d718-47a0-baba-1777f6de537e\",\n      \"task_id\": \"6fad217c-0ea5-4d52-954f-2a2274a5edb0\",\n      \"title\": \"[Plan Item] [api:ollama] Provider: Ollama Local, Model: qwen2.5:7…\",\n      \"description\": \"Convert this planned-meeting improvement note into an executable task: Design Pixel: [api:ollama] Provider: Ollama Local, Model: qwen2.5:7b --- Action item: - **Pixel (Design Team Lead)**: Create a visual placeholder in our design canvas to indicate where future \\\"Hello from Claw-Empire!\\\" e…\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"efdb115a-40a4-4e12-9219-bfc0d2afc658\",\n      \"blocked_reason\": \"Waiting for Design collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456298271,\n      \"completed_at\": null,\n      \"target_department_id\": \"design\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"c484ad6f-42ac-41d7-accc-1830b919a58b\",\n      \"task_id\": \"6fad217c-0ea5-4d52-954f-2a2274a5edb0\",\n      \"title\": \"[Collaboration] Produce Design deliverable\",\n      \"description\": \"Create and share the Design-owned deliverable based on the planned meeting.\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"efdb115a-40a4-4e12-9219-bfc0d2afc658\",\n      \"blocked_reason\": \"Waiting for Design collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456298271,\n      \"completed_at\": null,\n      \"target_department_id\": \"design\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"bc9bbfc6-6e1f-4c34-9e72-6915cff0be15\",\n      \"task_id\": \"6fad217c-0ea5-4d52-954f-2a2274a5edb0\",\n      \"title\": \"[Collaboration] Produce Operations deliverable\",\n      \"description\": \"Create and share the Operations-owned deliverable based on the planned meeting.\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"7eb827ab-03f3-4789-9287-b26899440cdc\",\n      \"blocked_reason\": \"Waiting for Operations collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456298271,\n      \"completed_at\": null,\n      \"target_department_id\": \"operations\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"1b5c159f-a013-4e45-a5e8-fc302b9fee9b\",\n      \"task_id\": \"6fad217c-0ea5-4d52-954f-2a2274a5edb0\",\n      \"title\": \"[Collaboration] Produce Development deliverable\",\n      \"description\": \"Create and share the Development-owned deliverable based on the planned meeting.\",\n      \"status\": \"blocked\",\n      \"assigned_agent_id\": \"e02e3f18-3258-49d1-9609-bc8920f0db74\",\n      \"blocked_reason\": \"Waiting for Development collaboration\",\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456298271,\n      \"completed_at\": null,\n      \"target_department_id\": \"dev\",\n      \"delegated_task_id\": null\n    },\n    {\n      \"id\": \"10f35876-517b-4fc1-979f-83d01fcc65d6\",\n      \"task_id\": \"6fad217c-0ea5-4d52-954f-2a2274a5edb0\",\n      \"title\": \"Consolidate department deliverables and finalize package\",\n      \"description\": \"Collect related-department outputs, merge into one package, and prepare the review submission.\",\n      \"status\": \"done\",\n      \"assigned_agent_id\": \"dad4e578-6dce-4c3c-8f8a-42f345124191\",\n      \"blocked_reason\": null,\n      \"cli_tool_use_id\": null,\n      \"created_at\": 1773456298271,\n      \"completed_at\": 1773456348845,\n      \"target_department_id\": null,\n      \"delegated_task_id\": null\n    }\n  ],\n  \"sandboxFiles\": [],\n  \"newFiles\": [],\n  \"taskCount\": 1\n}",
+      "duration": 200182,
+      "judgeResults": [
+        {
+          "judgeId": "task-created",
+          "passed": true,
+          "score": 100,
+          "confidence": 1,
+          "reasoning": "1 task(s) created successfully",
+          "details": {
+            "taskCount": 1,
+            "taskStatuses": [
+              "review"
+            ]
+          }
+        },
+        {
+          "judgeId": "artifact-exists",
+          "passed": false,
+          "score": 0,
+          "confidence": 1,
+          "reasoning": "Missing artifacts: hello.py",
+          "details": {
+            "found": [],
+            "missing": [
+              "hello.py"
+            ],
+            "allSandboxFiles": []
+          }
+        }
+      ],
+      "toolCalls": [],
+      "retryCount": 0
+    },
+    {
+      "evalCase": {
+        "id": "basic-directive",
+        "name": "Basic Directive - Task Creation",
+        "description": "Send a simple greeting directive to Claw-Empire and verify that at least one task gets created in the system. This tests the most fundamental part of the pipeline: directive ingestion.",
+        "category": "basic",
+        "tags": [
+          "smoke",
+          "pipeline",
+          "basic"
+        ],
+        "enabled": true,
+        "timeout": 180000,
+        "prompt": "Hello team! Please acknowledge this message and confirm the system is operational.",
+        "expectedBehavior": "The directive should be accepted, a meeting should occur, and at least one task should be created from it.",
+        "judges": [
+          "task-created"
+        ]
+      },
+      "success": false,
+      "output": "{\"error\":\"fetch failed\",\"tasks\":[],\"subtasks\":[],\"sandboxFiles\":[]}",
+      "duration": 10005,
+      "judgeResults": [
+        {
+          "judgeId": "task-created",
+          "passed": false,
+          "score": 0,
+          "confidence": 1,
+          "reasoning": "No tasks were created from the directive",
+          "details": {}
+        }
+      ],
+      "toolCalls": [],
+      "error": {},
+      "errorType": "unknown",
+      "retryCount": 0
+    }
+  ],
+  "duration": 375402,
+  "timestamp": "2026-03-14T02:45:59.361Z"
+}

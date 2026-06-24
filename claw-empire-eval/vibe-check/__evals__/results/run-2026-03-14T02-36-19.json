@@ -1,0 +1,67 @@
+{
+  "runId": "run-1773455769467-i2f7fr8",
+  "total": 1,
+  "passed": 0,
+  "failed": 1,
+  "skipped": 0,
+  "errors": 0,
+  "passRate": 0,
+  "results": [
+    {
+      "evalCase": {
+        "id": "routing-to-dev",
+        "name": "Routing - Dev Department",
+        "description": "Send a coding-specific directive and verify that the resulting subtasks are routed to the 'dev' department. This tests the meeting/delegation logic that assigns work to the correct department.",
+        "category": "routing",
+        "tags": [
+          "routing",
+          "dev",
+          "pipeline"
+        ],
+        "enabled": true,
+        "timeout": 180000,
+        "prompt": "Write a utility function in TypeScript that converts a camelCase string to snake_case. Include proper type annotations and handle edge cases.",
+        "expectedAgent": "dev",
+        "judges": [
+          "task-created",
+          "department-routing"
+        ]
+      },
+      "success": false,
+      "output": "{\n  \"directive_id\": \"4f1a7f4b-6242-4fd8-ad5e-808c0c288ffa\",\n  \"tasks\": [\n    {\n      \"id\": \"2fef1843-884d-4abb-bc54-1134e9abb6a7\",\n      \"title\": \"Write a utility function in TypeScript that converts a ca...\",\n      \"description\": \"[CEO] Write a utility function in TypeScript that converts a camelCase string to snake_case. Include proper type annotations and handle edge cases.\\n[PROJECT] Claw Sandbox\\n[PROJECT CORE GOAL] A sandbox workspace for the AI office agents to experiment, write code, and collaborate on tasks.\\n[ROUND GOAL] 프로젝트 핵심목표(\\\"A sandbox workspace for the AI office agents to experiment, write code, and collaborate on tasks.\\\")를 유지하면서 이번 요청(\\\"Write a utility function in TypeScript that converts a camelCase string to snake_case. Include proper type annotations and handle edge cases.\\\")을 이번 라운드에서 실행 가능한 산출물로 완수\",\n      \"department_id\": \"planning\",\n      \"assigned_agent_id\": \"dad4e578-6dce-4c3c-8f8a-42f345124191\",\n      \"project_id\": \"02935290-0d63-4d29-b895-f31396dd661f\",\n      \"status\": \"planned\",\n      \"priority\": 1,\n      \"task_type\": \"general\",\n      \"workflow_pack_key\": \"development\",\n      \"workflow_meta_json\": null,\n      \"output_format\": null,\n      \"project_path\": \"/Users/sam/Documents/Projects/gitaday/claw-sandbox\",\n      \"result\": null,\n      \"started_at\": null,\n      \"completed_at\": null,\n      \"created_at\": 1773455775967,\n      \"updated_at\": 1773455775967,\n      \"base_branch\": null,\n      \"source_task_id\": null,\n      \"hidden\": 0,\n      \"agent_name\": \"Sage\",\n      \"agent_avatar\": \"🧠\",\n      \"department_name\": \"Planning\",\n      \"department_icon\": \"📊\",\n      \"project_name\": \"Claw Sandbox\",\n      \"project_core_goal\": \"A sandbox workspace for the AI office agents to experiment, write code, and collaborate on tasks.\",\n      \"subtask_total\": 0,\n      \"subtask_done\": 0\n    }\n  ],\n  \"subtasks\": [],\n  \"sandboxFiles\": [],\n  \"newFiles\": [],\n  \"taskCount\": 1\n}",
+      "duration": 10035,
+      "judgeResults": [
+        {
+          "judgeId": "task-created",
+          "passed": true,
+          "score": 100,
+          "confidence": 1,
+          "reasoning": "1 task(s) created successfully",
+          "details": {
+            "taskCount": 1,
+            "taskStatuses": [
+              "planned"
+            ]
+          }
+        },
+        {
+          "judgeId": "department-routing",
+          "passed": false,
+          "score": 25,
+          "confidence": 1,
+          "reasoning": "No subtasks routed to \"dev\". Found departments: planning",
+          "details": {
+            "expectedDept": "dev",
+            "actualDepts": [
+              "planning"
+            ]
+          }
+        }
+      ],
+      "toolCalls": [],
+      "retryCount": 0
+    }
+  ],
+  "duration": 10048,
+  "timestamp": "2026-03-14T02:36:19.515Z"
+}

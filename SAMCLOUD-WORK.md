@@ -84,6 +84,150 @@ Claw-Empire (frontend :8800, API :8790) needs an exp route. Same basePath challe
 
 ---
 
+## OPEN: Model Registry & Provider Service
+**Filed:** 2026-04-02
+**Priority:** High
+**Triggered by:** Ad-hoc model management — manual downloads, manual llama-server restarts, no inventory, no way to request a new model
+
+### Problem
+
+Models are managed entirely by hand:
+- GGUFs live in `~/models/` with no metadata (who downloaded it, what quant, eval scores, compatible templates)
+- llama-server is started manually with flags nobody remembers (`--jinja --reasoning-format none --cache-type-k q4_0 ...`)
+- Swapping models means killing the process, remembering the right flags, and restarting
+- Template conflicts (tool-calling vs no-think) require full restart — no way to run two profiles simultaneously
+- No way for another agent/session/machine to say "I need Qwen3-32B with tool calling on port 8000" and have it happen
+- Eval results are disconnected from the model they were run against
+
+### Current Model Inventory
+| Model | File | Size | Quant | Where | Eval Score |
+|-------|------|------|-------|-------|------------|
+| Qwen3-32B (dense) | `Qwen3-32B-Q6_K.gguf` | 25GB | Q6_K | `~/models/` on M1 Max | 8/10 (80%) quick-eval |
+| Qwen3.5-35B-A3B (MoE) | `Qwen3.5-35B-A3B-Q4_K_M.gguf` | 21GB | Q4_K_M | `~/models/` on M1 Max | untested |
+| SDXL Base 1.0 | safetensors | ~7GB | fp16 | ComfyUI models dir | N/A (image gen) |
+
+### Proposed Solution: `samcloud-models`
+
+A model registry + provider daemon with three layers:
+
+#### 1. Model Registry (`models.json`)
+
+Canonical inventory at `~/models/models.json` (or `/var/lib/samcloud/models.json`):
+
+```json
+{
+  "models": [
+    {
+      "id": "qwen3-32b-q6k",
+      "name": "Qwen3-32B",
+      "family": "qwen3",
+      "quant": "Q6_K",
+      "format": "gguf",
+      "file": "Qwen3-32B-Q6_K.gguf",
+      "path": "/Users/sam/models/Qwen3-32B-Q6_K.gguf",
+      "size_gb": 25,
+      "params": "32B",
+      "active_params": "32B",
+      "architecture": "dense",
+      "source": "unsloth/Qwen3-32B-GGUF",
+      "downloaded": "2026-03-29",
+      "eval_scores": {
+        "quick-eval": {"pass": 8, "total": 10, "date": "2026-04-02"},
+        "bfcl": null
+      },
+      "profiles": {
+        "agent": {
+          "description": "Tool calling + reasoning for agent workloads",
+          "flags": "--jinja --reasoning-format none --flash-attn on --ctx-size 12288 --cache-type-k q4_0 --cache-type-v q4_0 --n-gpu-layers 99 -np 1 -t 4"
+        },
+        "chat": {
+          "description": "SillyTavern / casual chat with no-think",
+          "flags": "--chat-template-file /tmp/chatml-nothink.jinja --flash-attn on --ctx-size 8192 --cache-type-k q4_0 --cache-type-v q4_0 --n-gpu-layers 99 -np 1 -t 4"
+        }
+      },
+      "compatible_with": ["hermes", "mac-code", "sillytavern"]
+    }
+  ]
+}
+```
+
+Each model entry tracks: source repo, quant level, eval scores, launch profiles (pre-baked flag sets), and what frameworks it's compatible with.
+
+#### 2. Provider Manager (`model-provider`)
+
+A lightweight service (or CLI tool) that:
+
+- **`model-provider serve <model-id> --profile <agent|chat> [--port 8000]`**
+  Starts llama-server with the right model + flags from the registry. Registers the port in `ports.json`.
+
+- **`model-provider swap <model-id> [--profile <name>] [--port 8000]`**
+  Gracefully stops the current model on that port, starts the new one. Waits for health check before returning.
+
+- **`model-provider status`**
+  Shows which models are active on which ports, current memory usage, uptime.
+
+- **`model-provider stop [--port 8000]`**
+  Stops the model on a given port, deregisters from port registry.
+
+- **Multi-instance support**: Run agent model on :8000 and chat model on :8001 simultaneously (solves the template conflict).
+
+#### 3. Model Request System (`model-provider request`)
+
+For agents or sessions to request new models:
+
+- **`model-provider request <hf-repo> <filename>`**
+  - Checks if model is already downloaded
+  - Validates it fits in available RAM (with headroom for other services)
+  - Downloads via `huggingface_hub.hf_hub_download`
+  - Registers in `models.json` with metadata auto-populated from GGUF header
+  - Optionally runs quick-eval to establish baseline score
+
+- **`model-provider search <query>`**
+  - Searches HuggingFace for GGUF models matching a query
+  - Filters by size (must fit in machine RAM minus reserved)
+  - Shows quant options and recommended pick
+
+- **RAM budget enforcement**:
+  - M1 Max: 64GB total, ~20GB reserved (OS + services + ComfyUI), ~44GB available for LLM
+  - M4 Max: 48GB total, ~8GB reserved (OS), ~40GB available for LLM
+  - Rejects download if model won't fit, suggests smaller quant
+
+### Integration Points
+
+| System | Integration |
+|--------|-------------|
+| **Port registry** (`ports.json`) | Auto-register/deregister model ports on serve/stop |
+| **Eval harness** (`model-evals/`) | `model-provider eval <model-id>` runs quick-eval, stores scores in registry |
+| **Hermes** (`~/.hermes/config.yaml`) | `model-provider hermes-config <model-id>` updates Hermes to point at active model |
+| **samcloud service registry** | Each active model instance = registered service |
+| **Two-machine arch** | Provider on each machine, shared registry format, `model-provider remote <host> serve ...` |
+
+### Implementation Plan
+
+**Phase 1 — Registry + CLI (MVP)**
+1. Create `models.json` schema and seed with current 2 models
+2. `model-provider serve/stop/status/swap` — shell script wrapping llama-server lifecycle
+3. Port registry integration (read/write `ports.json` or call enroll script)
+4. Solve template conflict: support simultaneous agent + chat instances on different ports
+
+**Phase 2 — Request + Download**
+5. `model-provider request` — download from HuggingFace with RAM budget check
+6. `model-provider search` — query HuggingFace API for GGUF models
+7. Auto-populate model metadata from GGUF header (`gguf-dump`)
+
+**Phase 3 — Eval + Multi-Machine**
+8. `model-provider eval` — run quick-eval and/or BFCL, store scores in registry
+9. Remote provider support for M4 Max
+10. Claude skill (`/model`) for requesting models from any session
+
+### Open Questions
+- Shell script vs Python vs Go for the provider? (Shell is simplest, Python has `huggingface_hub` built in)
+- Should the registry live at repo level (`gitaday/models.json`) or system level (`/var/lib/samcloud/`)?
+- Do we need a daemon or is CLI-on-demand sufficient? (Daemon adds complexity but enables health monitoring)
+- Should Ollama be deprecated in favor of direct llama-server, or kept as a separate provider?
+
+---
+
 ## OPEN: Deploy KittenTTS Web Demo
 **Filed:** 2026-03-20
 **Priority:** Medium
